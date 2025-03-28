@@ -1,0 +1,7 @@
+C:\Users\ТЕХНОРАЙ\source\repos\phone2\phone2\obj\Debug\phone2.csproj.AssemblyReference.cache
+C:\Users\ТЕХНОРАЙ\source\repos\phone2\phone2\obj\Debug\phone2.csproj.CoreCompileInputs.cache
+C:\Users\ТЕХНОРАЙ\source\repos\phone2\phone2\bin\Debug\phone2.exe.config
+C:\Users\ТЕХНОРАЙ\source\repos\phone2\phone2\bin\Debug\phone2.exe
+C:\Users\ТЕХНОРАЙ\source\repos\phone2\phone2\bin\Debug\phone2.pdb
+C:\Users\ТЕХНОРАЙ\source\repos\phone2\phone2\obj\Debug\phone2.exe
+C:\Users\ТЕХНОРАЙ\source\repos\phone2\phone2\obj\Debug\phone2.pdb
