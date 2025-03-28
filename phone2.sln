@@ -1,25 +1,77 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.13.35913.81 d17.13
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "phone2", "phone2\phone2.csproj", "{BFFD690F-0042-4590-B9B7-FC30476FDE03}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BFFD690F-0042-4590-B9B7-FC30476FDE03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFFD690F-0042-4590-B9B7-FC30476FDE03}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFFD690F-0042-4590-B9B7-FC30476FDE03}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFFD690F-0042-4590-B9B7-FC30476FDE03}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0D95DDA8-480E-46DC-B1DE-7AE73AA4CCFA}
-	EndGlobalSection
-EndGlobal
+namespace phone2
+{
+    internal class Program
+    {
+        static void Main()
+        {
+            Console.Write("Введіть кількість телефонів: ");
+            int n = int.Parse(Console.ReadLine());
+            Phone[] phones = new Phone[n];
+
+            for (int i = 0; i < n; i++)
+            {
+                phones[i] = new Phone();
+
+                Console.WriteLine($"\nВведення даних для телефону {i + 1}:");
+
+                Console.Write("Бренд: ");
+                phones[i].Brand = Console.ReadLine();
+
+                Console.Write("Модель: ");
+                phones[i].Model = Console.ReadLine();
+
+                Console.Write("Розмір екрана (в дюймах): ");
+                phones[i].ScreenSize = double.Parse(Console.ReadLine());
+
+                Console.Write("Оперативна пам'ять (ГБ): ");
+                phones[i].RAM = int.Parse(Console.ReadLine());
+
+                Console.Write("Пам'ять для зберігання (ГБ): ");
+                phones[i].Storage = int.Parse(Console.ReadLine());
+
+                Console.Write("Колір: ");
+                phones[i].Color = Console.ReadLine();
+
+                Console.Write("Ціна (грн): ");
+                phones[i].Price = decimal.Parse(Console.ReadLine());
+
+                Console.Write("Ємність акумулятора (мАг): ");
+                phones[i].BatteryCapacity = int.Parse(Console.ReadLine());
+            }
+
+            Console.WriteLine("\n--- Інформація про всі телефони ---");
+            foreach (var phone in phones)
+            {
+                Console.WriteLine($"\nБренд: {phone.Brand}");
+                Console.WriteLine($"Модель: {phone.Model}");
+                Console.WriteLine($"Розмір екрана: {phone.ScreenSize}\"");
+                Console.WriteLine($"Оперативна пам'ять: {phone.RAM} ГБ");
+                Console.WriteLine($"Пам'ять для зберігання: {phone.Storage} ГБ");
+                Console.WriteLine($"Колір: {phone.Color}");
+                Console.WriteLine($"Ціна: {phone.Price:C}");
+                Console.WriteLine($"Ємність акумулятора: {phone.BatteryCapacity} мАг");
+                Console.WriteLine($"Ціна за 1 ГБ пам'яті: {phone.GetPricePerGB():F2} грн");
+            }
+
+            Console.WriteLine("\nНатисніть будь-яку клавішу для виходу...");
+            Console.ReadKey();
+        }
+    }
+
+    class Phone
+    {
+        public string Brand ;
+        public string Model;
+        public double ScreenSize;
+        public int RAM ;
+        public int Storage;
+        public string Color ;
+        public decimal Price ;
+        public int BatteryCapacity;
+
+        public double GetPricePerGB()
+        {
+            return (double)Price / Storage;
+        }
+    }
+}
