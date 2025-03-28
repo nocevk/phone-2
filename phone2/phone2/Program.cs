@@ -11,7 +11,13 @@ namespace phone2
         static void Main()
         {
             Console.Write("Введіть кількість телефонів: ");
-            int n = int.Parse(Console.ReadLine());
+            int n;
+            while (!int.TryParse(Console.ReadLine(), out n) || n <= 0)
+            {
+                Console.WriteLine("Некоректне значення! Спробуйте ще раз.");
+                Console.Write("Введіть кількість телефонів: ");
+            }
+
             Phone[] phones = new Phone[n];
 
             for (int i = 0; i < n; i++)
@@ -43,6 +49,9 @@ namespace phone2
 
                 Console.Write("Ємність акумулятора (мАг): ");
                 phones[i].BatteryCapacity = int.Parse(Console.ReadLine());
+
+                Console.Write("Операційна система: "); // Введення нового параметра
+                phones[i].OperatingSystem = Console.ReadLine();
             }
 
             Console.WriteLine("\n--- Інформація про всі телефони ---");
@@ -56,29 +65,33 @@ namespace phone2
                 Console.WriteLine($"Колір: {phone.Color}");
                 Console.WriteLine($"Ціна: {phone.Price:C}");
                 Console.WriteLine($"Ємність акумулятора: {phone.BatteryCapacity} мАг");
-                Console.WriteLine($"Ціна за 1 ГБ пам'яті: {phone.GetPricePerGB():F2} грн");
+                Console.WriteLine($"Операційна система: {phone.OperatingSystem}"); // Виведення нової властивості
+                Console.WriteLine($"Ціна за 1 ГБ пам'яті: {phone.PricePerGB():F2} грн"); // Виклик функції без get
             }
 
             Console.WriteLine("\nНатисніть будь-яку клавішу для виходу...");
             Console.ReadKey();
         }
     }
+}
 
-    class Phone
-    {
-        public string Brand ;
+ class Phone
+ {
+        public string Brand;
         public string Model;
         public double ScreenSize;
-        public int RAM ;
+        public int RAM;
         public int Storage;
-        public string Color ;
-        public decimal Price ;
+        public string Color;
+        public decimal Price;
         public int BatteryCapacity;
+        public string OperatingSystem; // Додана нова властивість
 
-        public double GetPricePerGB()
+        // Обчислення ціни за 1 ГБ пам'яті без використання get-методу
+        public double PricePerGB()
         {
-            return (double)Price / Storage;
+            return Storage > 0 ? (double)Price / Storage : 0;
         }
-    }
-}
+    
+ }
 
